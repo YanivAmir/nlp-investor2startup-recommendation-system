@@ -283,7 +283,6 @@ def calc_distances(score_mat_df):
 
 if __name__=="__main__":
 
-    '''Parameters'''
     snippets_to_join = 10
     start_index=0
     sleep_start=5
