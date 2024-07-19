@@ -74,7 +74,7 @@ def save_startup_df(texts,names,start_index,index):
     print('SAVED : Startups Texts. Startups #'+str(start_index)+'-'+str(index+1))
     return(summary)
 
-def startups_text(startups_df, end_index, start_index=0, snippets_to_join=10, sleep_start=5, sleep_end=10,sleep_interval=150):
+def scrape_startups_text(startups_df, end_index, start_index=0, snippets_to_join=10, sleep_start=5, sleep_end=10,sleep_interval=150):
     print('initiating text mining for startups')
     startups_names, startups_texts = [], []
     for i in range(start_index, end_index):
@@ -104,7 +104,7 @@ def save_investors_df(investors,texts,company_names,start_index,index):
     print('SAVED : Investors Texts. #'+str(start_index)+'-'+str(index+1))
     return(summary)
 
-def investors_text(investors_df,end_index, start_index=0, snippets_to_join=10, sleep_start=5, sleep_end=10,sleep_interval=150):
+def scrape_investors_text(investors_df,end_index, start_index=0, snippets_to_join=10, sleep_start=5, sleep_end=10,sleep_interval=150):
     print('initiating text mining for investors profiling companies')
     investors_names,companies_names,companies_texts= [],[],[]
     for j in range(start_index,end_index):
@@ -281,25 +281,24 @@ def calc_distances(score_mat_df):
             startup_distances[i,j]=np.linalg.norm(score_mat_df.iloc[i,:].values - score_mat_df.iloc[j,:].values)
     return(startup_distances,investor_distances)
 
-
-
-'''Parameters'''
-snippets_to_join = 10
-start_index=0
-sleep_start=5
-sleep_end=10
-sleep_interval=150
-recommendations_per_investor = 10
-words_black_list = ['rasing','company','series','revenue','usd','seed','round','followers','linkedin','twitter','contact','employees','it','location','view','is','in','a','an','that','this','these','and','if','or','to','by','are','the','of','with','for','etc','at','via']
-ngram_min = 1
-ngram_max = 4
-max_word_features = 20000
-char_min = 3
-char_max = 7
-max_char_features = 50000
-char_vs_word_score_ratio = 3
-
 if __name__=="__main__":
+
+    '''Parameters'''
+    snippets_to_join = 10
+    start_index=0
+    sleep_start=5
+    sleep_end=10
+    sleep_interval=150
+    recommendations_per_investor = 10
+    words_black_list = ['rasing','company','series','revenue','usd','seed','round','followers','linkedin','twitter','contact','employees','it','location','view','is','in','a','an','that','this','these','and','if','or','to','by','are','the','of','with','for','etc','at','via']
+    ngram_min = 1
+    ngram_max = 4
+    max_word_features = 20000
+    char_min = 3
+    char_max = 7
+    max_char_features = 50000
+    char_vs_word_score_ratio = 3
+
 
     '''Example Data'''
     startup_names = ['Johnson&Johnson','Coca Cola Company','Gucci','Mattel','Intel','H&M','Crowdstrike','Tesla','Shopify']
@@ -312,23 +311,21 @@ if __name__=="__main__":
     investors_df = pd.DataFrame([investors,investors_profiling_investments]).T
     investors_df.columns=['Investor','Profiling investments']
     
-    """Main"""
+
     '''text mining subroutines'''
     #startups_df = pd.read_csv('path/to/strartups.csv')
-    
     end_index=len(startups_df)
-    startups_texts_df = startups_text(startups_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
+    startups_texts_df = scrape_startups_text(startups_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
     startups_texts_df = startups_texts_df.drop_duplicates(subset='Company').reset_index()
     #investors_df = pd.read_csv("/'path/to/investors.csv'.csv")
     investors_df = get_profiling_investments(investors_df)
     end_index=len(investors_df)
-    investors_text_df = investors_text(investors_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
+    investors_text_df = scrape_investors_text(investors_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
     investors_text_df = investors_text_df.dropna().reset_index()
     combined_df = pd.concat([investors_text_df,startups_texts_df]).reset_index()
     combined_df = edit_combined_text(combined_df,words_black_list)
     n_startups = len(startups_texts_df)
-    n_investors = len(investors_text_df)
-    
+    n_investors = len(investors_text_df)   
     print('mining text is complete')
     
     '''text vectorisation and cosine similarities'''
