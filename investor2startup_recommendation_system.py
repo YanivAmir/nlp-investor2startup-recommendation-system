@@ -8,8 +8,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import re
 
-
-
 def get_profiling_investments(df):
     investors, profiling_companies, investors_wo_profile = [],[],[]
     for i,investments in enumerate(df['Profiling investments']):
@@ -301,54 +299,55 @@ char_max = 7
 max_char_features = 50000
 char_vs_word_score_ratio = 3
 
-'''Example Data'''
-startup_names = ['Johnson&Johnson','Coca Cola Company','Gucci','Mattel','Intel','H&M','Crowdstrike','Tesla','Shopify']
-startup_websites = [] #'https://www.jnj.com/','https://www.coca-colacompany.com/','https://www.gucci.com/us/en/','https://shop.mattel.com/','intel.com','https://shop.lululemon.com/','https://www.crowdstrike.com/','https://www.tesla.com/','https://www.shopify.com/']
-startups_df = pd.DataFrame([startup_names,startup_websites]).T
-startups_df.columns=['Company Name','Website']
+if __name__=="__main__":
 
-investors = ['Leonardo da Vinci','Pheobe Bridgers','Marie Curie','RuPaul Charles','Buffy Summers','Angels in America','Rosa Parks','Michel Foucault','Katya']
-investors_profiling_investments = ['BioNTech,Pfizer,Bayer','Mcdonalds,Pepsi,Nestle','Dior,Prada','Toys"R"Us,Lego','Nvidia,AMD','Zara','Palo Alto Networks,Checkpoint','Toyota,Ford','Alibaba Group,Amazon']
-investors_df = pd.DataFrame([investors,investors_profiling_investments]).T
-investors_df.columns=['Investor','Profiling investments']
-
-"""Main"""
-'''text mining subroutines'''
-#startups_df = pd.read_csv('path/to/strartups.csv')
-#startups_df = pd.read_csv('/Users/yanivamir/Documents/Machine Learning/GVI Kobi Kalderon/Funding Seeking Startups.csv')
-
-end_index=len(startups_df)
-startups_texts_df = startups_text(startups_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
-startups_texts_df = startups_texts_df.drop_duplicates(subset='Company').reset_index()
-#investors_df = pd.read_csv("/'path/to/investors.csv'.csv")
-investors_df = get_profiling_investments(investors_df)
-end_index=len(investors_df)
-investors_text_df = investors_text(investors_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
-investors_text_df = investors_text_df.dropna().reset_index()
-combined_df = pd.concat([investors_text_df,startups_texts_df]).reset_index()
-combined_df = edit_combined_text(combined_df,words_black_list)
-n_startups = len(startups_texts_df)
-n_investors = len(investors_text_df)
-
-print('mining text is complete')
-
-'''text vectorisation and cosine similarities'''
-word_features = word_vectorize(combined_df,ngram_min,ngram_max,max_word_features)
-char_features = char_vectorize(combined_df,char_min,char_max,max_char_features)
-cosine_matrix = cosine_scoring(n_startups,n_investors,word_features,char_features,char_vs_word_score_ratio)
-print(cosine_matrix.shape)
-#np.save('cosine_matrix', cosine_matrix)
-print('cosine matrix was saved')
-
-'''finding matches based on cosine similarities' matrix'''
-matching_investors_to_startups = find_startups(startups_texts_df,cosine_matrix,investors_text_df,len(startups_texts_df),individually=False,investors='all')
-#matching_investors_to_startups.to_csv('matching_investors_to_startups')
-score_matrix_df = create_score_matrix_df(matching_investors_to_startups,startups_texts_df)
-#score_matrix_df.to_csv('score_matrix_df')
-Startups_looking_for_investors = find_investors(score_matrix_df)
-#matching_startups_to_investors.to_csv('matching_startups_to_investors')
-Investors_looking_to_invest = find_investors(score_matrix_df.T)
-# matching_investor_to_startups.to_csv('matching_investor_to_startups')
-print('csv summary files were saved')
-print('done')
+    '''Example Data'''
+    startup_names = ['Johnson&Johnson','Coca Cola Company','Gucci','Mattel','Intel','H&M','Crowdstrike','Tesla','Shopify']
+    startup_websites = [] #'https://www.jnj.com/','https://www.coca-colacompany.com/','https://www.gucci.com/us/en/','https://shop.mattel.com/','intel.com','https://shop.lululemon.com/','https://www.crowdstrike.com/','https://www.tesla.com/','https://www.shopify.com/']
+    startups_df = pd.DataFrame([startup_names,startup_websites]).T
+    startups_df.columns=['Company Name','Website']
+    
+    investors = ['Leonardo da Vinci','Pheobe Bridgers','Marie Curie','RuPaul Charles','Buffy Summers','Angels in America','Rosa Parks','Michel Foucault','Katya']
+    investors_profiling_investments = ['BioNTech,Pfizer,Bayer','Mcdonalds,Pepsi,Nestle','Dior,Prada','Toys"R"Us,Lego','Nvidia,AMD','Zara','Palo Alto Networks,Checkpoint','Toyota,Ford','Alibaba Group,Amazon']
+    investors_df = pd.DataFrame([investors,investors_profiling_investments]).T
+    investors_df.columns=['Investor','Profiling investments']
+    
+    """Main"""
+    '''text mining subroutines'''
+    #startups_df = pd.read_csv('path/to/strartups.csv')
+    
+    end_index=len(startups_df)
+    startups_texts_df = startups_text(startups_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
+    startups_texts_df = startups_texts_df.drop_duplicates(subset='Company').reset_index()
+    #investors_df = pd.read_csv("/'path/to/investors.csv'.csv")
+    investors_df = get_profiling_investments(investors_df)
+    end_index=len(investors_df)
+    investors_text_df = investors_text(investors_df,end_index,start_index,snippets_to_join,sleep_start,sleep_end,sleep_interval)
+    investors_text_df = investors_text_df.dropna().reset_index()
+    combined_df = pd.concat([investors_text_df,startups_texts_df]).reset_index()
+    combined_df = edit_combined_text(combined_df,words_black_list)
+    n_startups = len(startups_texts_df)
+    n_investors = len(investors_text_df)
+    
+    print('mining text is complete')
+    
+    '''text vectorisation and cosine similarities'''
+    word_features = word_vectorize(combined_df,ngram_min,ngram_max,max_word_features)
+    char_features = char_vectorize(combined_df,char_min,char_max,max_char_features)
+    cosine_matrix = cosine_scoring(n_startups,n_investors,word_features,char_features,char_vs_word_score_ratio)
+    print(cosine_matrix.shape)
+    np.save('cosine_matrix', cosine_matrix)
+    print('cosine matrix was saved')
+    
+    '''finding matches based on cosine similarities' matrix'''
+    matching_investors_to_startups = find_startups(startups_texts_df,cosine_matrix,investors_text_df,len(startups_texts_df),individually=False,investors='all')
+    matching_investors_to_startups.to_csv('matching_investors_to_startups')
+    score_matrix_df = create_score_matrix_df(matching_investors_to_startups,startups_texts_df)
+    score_matrix_df.to_csv('score_matrix_df')
+    Startups_looking_for_investors = find_investors(score_matrix_df)
+    matching_startups_to_investors.to_csv('matching_startups_to_investors')
+    Investors_looking_to_invest = find_investors(score_matrix_df.T)
+    matching_investor_to_startups.to_csv('matching_investor_to_startups')
+    print('csv summary files were saved')
+    print('done')
 
