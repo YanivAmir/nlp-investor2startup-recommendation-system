@@ -1,6 +1,6 @@
 # Recommendation System for Investors to Startups
 
-This is a work I did as part of my internship after completing my ML studies
+This is a script I wrote during my internship in early 2021 after completing my ML studies.
 
 The goal was to make bilateral recommendations of Investors to Stratups based on similar interests, markets, technologies etc.
 
@@ -14,5 +14,5 @@ Matching is either based on the best matching out of all profiling companies in 
 
 Result is a dataframe where each investor is given the list of best matching recommended startups for investments, in decreaseing order, and their relative scores.
 Result is also given in the perspective of the startups, i.e. which of the list of investors given is the ideal candidate for investment in the startup based on common market niches, technology etc.
-A sample small data is given for testing
+A sample small data is given for testing.
 
