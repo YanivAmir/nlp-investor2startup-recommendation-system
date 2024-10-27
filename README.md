@@ -16,3 +16,37 @@ Result is a dataframe where each investor is given the list of best matching rec
 Result is also given in the perspective of the startups, i.e. which of the list of investors given is the ideal candidate for investment in the startup based on common market niches, technology etc.
 A sample small data is given for testing.
 
+## Results from Sample Data:
+
+Sample Data Startup Companies:
+
+<img width="212" alt="Screenshot 2024-10-27 at 21 30 50" src="https://github.com/user-attachments/assets/9ba52ffe-c3d2-4138-adee-cf14a7616055">
+
+Sample Data Investors:
+
+<img width="408" alt="Screenshot 2024-10-27 at 21 31 13" src="https://github.com/user-attachments/assets/582f4e17-132d-4903-ae22-085da03b001c">
+
+Example Company-Descriptive Text Mined from Google Search Results:
+Gucci:
+<img width="1255" alt="Screenshot 2024-10-27 at 21 32 03" src="https://github.com/user-attachments/assets/1ae43787-ee2f-4393-90dc-b72bf5830cee">
+Tesla:
+<img width="1249" alt="Screenshot 2024-10-27 at 21 32 28" src="https://github.com/user-attachments/assets/974ca6b6-52d0-4922-8c6c-5248d48fa3bf">
+
+Distribution of Text Lengths in Small Sample Data:
+<img width="621" alt="Screenshot 2024-10-27 at 21 52 28" src="https://github.com/user-attachments/assets/eb9daf7d-b5e2-4872-9dd5-f6861af081e2">
+
+Results When Investors' Profiling Companies are Averaged:
+<img width="1087" alt="image" src="https://github.com/user-attachments/assets/57b5ef2a-217c-48a8-98a9-4765487e0340">
+
+<img width="683" alt="Screenshot 2024-10-27 at 21 56 13" src="https://github.com/user-attachments/assets/4a18f42a-35fe-4e87-959e-d9a8c23a0d21">
+
+Results When Investor's Profiling Companies are Measured Individually and the Max Score is Taken:
+<img width="1085" alt="image" src="https://github.com/user-attachments/assets/95f1b5b1-2fdf-40a5-8ac2-0dee3dd7eb4e">
+The change between the two options is not so clear with this small sample.
+
+
+
+
+
+
+
