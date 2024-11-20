@@ -4,6 +4,16 @@ This is a script I wrote during my internship in early 2021 after completing my 
 
 The goal was to make bilateral recommendations of Investors to Stratups based on similar interests, markets, technologies etc.
 
+Tech used:
+<img alt="Python" src="https://img.shields.io/badge/Python-3776ab?logo=python&logoColor=white&style-flat">
+<img alt="scikit-learn" src="https://img.shields.io/badge/Scikit-f7931e?logo=scikit-learn&logoColor=white&style-flat">
+<img alt="NumPy" src="https://img.shields.io/badge/NumPy-013242?logo=numpy&logoColor=white&style-flat">
+<img alt="Pandas" src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white&style-flat">
+<img alt="Jupyter" src="https://img.shields.io/badge/Jupyter-f37626?logo=jupyter&logoColor=white&style-flat">
+<img alt="PyCharm" src="https://img.shields.io/badge/PyCharm-000000?logo=PyCharm&logoColor=white&style-flat">
+<img alt="Google" src="https://img.shields.io/badge/Google-4285f4?logo=Google&logoColor=white&style-flat">
+
+
 The text vectorisation is based on TF-IDF and is pretty straight forward, with both multiple-word ccombinations, and sub-word charachters used for tokenisation.
 
 The main challenge was to look for a uniform and consice information system that provides unbiased desciptive text for both stratup and investors.
