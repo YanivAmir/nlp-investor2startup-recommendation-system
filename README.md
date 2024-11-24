@@ -5,8 +5,8 @@ This is a script I wrote during my internship in early 2021 after completing my 
 The goal was to make bilateral recommendations of Investors to Stratups based on similar interests, markets, technologies etc.
 
 Tech used:
-<img alt="Python" src="https://img.shields.io/badge/Python-3776ab?logo=python&logoColor=white&style-flat">
-<img alt="scikit-learn" src="https://img.shields.io/badge/Scikit-f7931e?logo=scikit-learn&logoColor=white&style-flat">
+
+<img alt="Python" src="https://img.shields.io/badge/Python-3776ab?logo=python&logoColor=white&style-flat"><img alt="scikit-learn" src="https://img.shields.io/badge/Scikit-f7931e?logo=scikit-learn&logoColor=white&style-flat">
 <img alt="NumPy" src="https://img.shields.io/badge/NumPy-013242?logo=numpy&logoColor=white&style-flat">
 <img alt="Pandas" src="https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white&style-flat">
 <img alt="Jupyter" src="https://img.shields.io/badge/Jupyter-f37626?logo=jupyter&logoColor=white&style-flat">
@@ -16,7 +16,7 @@ Tech used:
 
 The text vectorisation is based on TF-IDF and is pretty straight forward, with both multiple-word ccombinations, and sub-word charachters used for tokenisation.
 
-The main challenge was to look for a uniform and consice information system that provides unbiased desciptive text for both stratup and investors.
+The main challenge was to look for a uniform and consice information system that provides unbiased desciptive text for both stratups and investors.
 This was solved by scraping google search results snippets, when the company name is being queried, and combining them into a company descriptive text.
 Similarly for investors, a list of previous company investments is required (this could be companies that the particular investor is interested in modelling their next investment on). The model finds the descriptive texts of each the profiling investments of the investor.
 
