@@ -4,7 +4,7 @@ This is a script I wrote during my internship in early 2021 after completing my 
 
 The goal was to make bilateral recommendations of Investors to Stratups based on similar interests, markets, technologies etc.
 
-Tech used:
+Tech used in analysis:
 
 <img alt="Python" src="https://img.shields.io/badge/Python-3776ab?logo=python&logoColor=white&style-flat"><img alt="scikit-learn" src="https://img.shields.io/badge/Scikit-f7931e?logo=scikit-learn&logoColor=white&style-flat">
 <img alt="NumPy" src="https://img.shields.io/badge/NumPy-013242?logo=numpy&logoColor=white&style-flat">
